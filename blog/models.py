@@ -38,14 +38,3 @@ class Commentary(models.Model):
 
     def __str__(self):
         return f"Comment by {self.user} on {self.post}"
-
-class CommentaryForm(forms.ModelForm):
-    class Meta:
-        model = Commentary
-        fields = ('content',)
-        labels = {
-            'content': 'Dodaj swój komentarz',
-        }
-        widgets = {
-            'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Napisz co myślisz...'}),
-        }

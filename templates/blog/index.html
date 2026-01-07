@@ -18,6 +18,7 @@
             {% empty %}
                 <p class="alert alert-info">Brak wpisów do wyświetlenia.</p>
             {% endfor %}
+            {% include "includes/pagination.html" %}
         </div>
 
         {% include "includes/pagination.html" %}

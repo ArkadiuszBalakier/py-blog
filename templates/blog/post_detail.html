@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<article class="c-post-detail">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <header class="mb-5">
+                <h1 class="display-4 fw-bold c-post-detail__title">{{ post.title }}</h1>
+                <p class="text-muted c-post-detail__meta">
+                    Autor: <strong>{{ post.owner.username }}</strong> | 
+                    Opublikowano: {{ post.created_time|date:"d F Y, H:i" }}
+                </p>
+                <hr>
+            </header>
+
+            <section class="c-post-detail__content mb-5">
+                {{ post.content|linebreaks }}
+            </section>
+
+            <footer class="border-top pt-4">
+                <a href="{% url 'blog:index' %}" class="btn btn-outline-secondary">
+                    &larr; Wróć do listy wpisów
+                </a>
+            </footer>
+        </div>
+    </div>
+</article>
+{% endblock %}

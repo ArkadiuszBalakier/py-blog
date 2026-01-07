@@ -1,12 +1,19 @@
 from django.shortcuts import render
+from django.views import generic
 
 from blog.models import Post
 
 
-# Create your views here.
-def index(request):
-    post_list = Post.objects.all().order_by('-created_time')
-    context = {
-        "post_list": post_list,
-    }
-    return render(request, 'blog/index.html', context=context)
+class PostListView(generic.ListView):
+    model = Post
+    template_name = 'blog/index.html'
+    context_object_name = 'post_list'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return Post.objects.all().order_by('-created_time')
+
+
+class PostDetailView(generic.DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'

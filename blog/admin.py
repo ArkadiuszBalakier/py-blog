@@ -14,19 +14,19 @@ class BlogUserAdmin(UserAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("title", "owner", "created_time")
-    list_filter = ("created_time", "owner")
+    list_display = ("title", "author", "created_time")
+    list_filter = ("created_time", "author")
     search_fields = ("title", "content")
     ordering = ("-created_time",)
 
 
 @admin.register(Commentary)
 class CommentaryAdmin(admin.ModelAdmin):
-    list_display = ("user", "post", "created_time", "short_content")
-    list_filter = ("created_time", "user")
+    list_display = ("author", "post", "created_time", "short_content")
+    list_filter = ("created_time", "author")
     search_fields = (
-        "user__username",
-        "content",
+        "author__username",
+        "text",
     )
 
     @admin.display(description="Content Preview")

@@ -5,16 +5,16 @@ from .models import Commentary
 class CommentaryForm(forms.ModelForm):
     class Meta:
         model = Commentary
-        fields = ["content"]
+        fields = ["text"]
         labels = {
-            "content": "",  # Ukrywamy etykietę, bo mamy placeholder
+            "content": "",
         }
         widgets = {
             "content": forms.Textarea(
                 attrs={
                     "rows": 3,
                     "placeholder": "Napisz swój komentarz tutaj...",
-                    "class": "form-control",  # Klasa Bootstrapa
+                    "class": "form-control",
                 }
             ),
         }

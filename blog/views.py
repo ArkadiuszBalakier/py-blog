@@ -23,7 +23,10 @@ class PostDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["comment_form"] = CommentaryForm()
-        context["comments"] = self.object.comments.all().order_by("-created_time")
+        context["comments"] = (
+            self.object.comments.all()
+            .order_by("-created_time")
+        )
         return context
 
 
@@ -39,4 +42,7 @@ class CommentaryCreateView(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("blog:post-detail", kwargs={"pk": self.kwargs.get("pk")})
+        return reverse(
+            "blog:post-detail",
+            kwargs={"pk": self.kwargs.get("pk")}
+        )
